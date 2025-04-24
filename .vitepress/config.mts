@@ -4,8 +4,8 @@ import nav from "./nav.mts";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  head: [["link", { rel: "icon", href: "/logo.png" }]],
 
+  head: [["link", { rel: "icon", href: "/logo.png" }]],
   // 监听文件变化，热更新
   vite: {
     server: {
@@ -22,7 +22,7 @@ export default defineConfig({
     headers: {
       level: [1, 2, 3, 4, 5, 6],
     },
-    
+
   },
 
   title: "一只小康康",
@@ -82,7 +82,8 @@ export default defineConfig({
     //   }
     // ],
     footer: {
-      copyright: "牛马人的天堂",
+      copyright: "牛马康康 © 2025-present",
+      message: "MIT Licensed",
     },
   },
 });
