@@ -11,7 +11,11 @@ export default [
             { text: "docker", link: "/project/devops/docker/0.docker分类简介.md" },
             { text: "harbor", link: "/project/devops/harbor/0.harbor分类简介.md" },
             { text: "k8s", link: "/project/devops/k8s/0.k8s分类简介.md" },
+            { text: "jenkins", link: "/project/devops/jenkins/0.jenkins分类简介.md" },
+            { text: "nfs", link: "/project/devops/nfs/0.nfs分类简介.md" },
+            { text: "ansible", link: "/project/devops/ansible/0.ansible分类简介.md" },
 
+            
         ],
     },
     {
