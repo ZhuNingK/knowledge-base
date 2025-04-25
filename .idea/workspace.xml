@@ -4,31 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a34b2443-f981-46dd-a065-0d8278df418a" name="Changes" comment="init">
-      <change beforePath="$PROJECT_DIR$/.vitepress/cache/deps/@theme_index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vitepress/cache/deps/@theme_index.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vitepress/cache/deps/_metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vitepress/cache/deps/_metadata.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vitepress/config.mts" beforeDir="false" afterPath="$PROJECT_DIR$/.vitepress/config.mts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vitepress/nav.mts" beforeDir="false" afterPath="$PROJECT_DIR$/.vitepress/nav.mts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vitepress/sidebar.mts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vitepress/themes/index.mts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vitepress/themes/style/index.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vitepress/themes/style/var.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/devops/base/0.base分类简介.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/devops/base/linux/1.LVM.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/devops/docker/0.docker分类简介.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/devops/docker/1.install.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/devops/harbor/0.harbor分类简介.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/devops/harbor/1.install.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/devops/jenkins/0.jenkins分类简介.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/devops/jenkins/k8s/1.workflow.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/devops/k8s/0.k8s分类简介.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/devops/k8s/1.install.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/devops/k8s/jenkins/deployment.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/devops/k8s/jenkins/service.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/devops/nfs/0.nfs分类简介.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/devops/nfs/1.install.md" beforeDir="false" />
-    </list>
+    <list default="true" id="a34b2443-f981-46dd-a065-0d8278df418a" name="Changes" comment="init" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -37,18 +13,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;ZhuNingK&quot;
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "ZhuNingK"
   }
-}</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;git@github.com:ZhuNingK/knowledge-base.git&quot;,
-    &quot;accountId&quot;: &quot;547cd1d1-0d76-4e57-a7dc-9ff16b757c07&quot;
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "git@github.com:ZhuNingK/knowledge-base.git",
+    "accountId": "547cd1d1-0d76-4e57-a7dc-9ff16b757c07"
   }
-}</component>
+}]]></component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -59,9 +35,9 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 1
-}</component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 1
+}]]></component>
   <component name="ProjectId" id="2w5qfNCG9qzgoTQP67fPESQiySX" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -80,7 +56,6 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "settings.sync",
-    "ts.external.directory.path": "/Users/zhuningkang/Applications/IntelliJ IDEA Ultimate.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -100,7 +75,6 @@
       <option name="presentableId" value="Default" />
       <updated>1745341884251</updated>
       <workItem from="1745341885616" duration="449000" />
-      <workItem from="1745585158051" duration="55000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
