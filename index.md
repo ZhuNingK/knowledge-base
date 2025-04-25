@@ -12,7 +12,7 @@ hero:
   actions:
     - theme: brand
       text: 开始学习
-      link: /https://github.com/
+      link: "https://github.com/"
     - theme: alt
       text: 查看版本更新
       link: /detail
