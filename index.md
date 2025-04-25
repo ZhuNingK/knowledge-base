@@ -6,13 +6,13 @@ hero:
   image: 
     src: /logo.png
     alt: '图片'
-  name: "康康的知识库"
+  name: "开发｜运维｜知识库"
   text: "牛马的摆烂人生"
   tagline: "开启摆烂生涯"
   actions:
     - theme: brand
       text: 开始学习
-      link: /startStudy
+      link: /https://github.com/
     - theme: alt
       text: 查看版本更新
       link: /detail
