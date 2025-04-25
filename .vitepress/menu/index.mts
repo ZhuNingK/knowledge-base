@@ -3,6 +3,7 @@
 // 运维
 import devopsMenu from "./devops/base"
 import javaJenkinsMenu from "./java/jenkins"
+import mybatisMenu from "./java/mybatis"
 
 const createSidebar = () => {
   return {
@@ -10,6 +11,7 @@ const createSidebar = () => {
     '/docs/devops/base/': devopsMenu,
     // java
     '/docs/java/jenkins/': javaJenkinsMenu,
+    '/docs/java/mybatis/': mybatisMenu,
 
   }
 }
