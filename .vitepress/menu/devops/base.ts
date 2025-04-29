@@ -15,6 +15,24 @@ const devopsMenu = [
         ]
       },
       {
+        text: 'nginx',
+        collapsed: false,
+        items: [
+          {
+            text: 'nginx+lua安装',
+            link: '/docs/devops/base/nginx/nginx+lua_install.md',
+          },
+          {
+            text: 'nginx基础配置',
+            link: 'docs/devops/base/nginx/configuration.md',
+          },
+          {
+            text: 'nginx生产应用',
+            link: 'docs/devops/base/nginx/prod.md',
+          }
+        ]
+      },
+      {
         text: 'docker',
         collapsed: false,
         items: [
