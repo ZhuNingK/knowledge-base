@@ -18,6 +18,12 @@ const createNav = () => {
                 { text: "Mybatis", link: "/docs/java/mybatis/mybatis.md" },
             ],
         },
+        {
+            text: "SQL",
+            items: [
+                { text: "DM数据库", link: "/docs/sql/base.md" },
+            ],
+        },
     ]
 
 }

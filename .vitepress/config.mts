@@ -8,9 +8,10 @@ export default defineConfig({
   title: "一只小康康",
   description: "Learn Documents",
   lang: 'zh-CN',
+  lastUpdated: true,
 
   head: [
-    ["link", { rel: "icon", href: "/logo.png" }],
+    ["link", { rel: "icon", href: "/static/favicon.ico" }],
     [
       'meta',
       {
@@ -22,34 +23,25 @@ export default defineConfig({
     ['meta', { 'http-equiv': 'Expires', content: '0' }],
 
   ],
-  // 监听文件变化，热更新
-  vite: {
-    server: {
-      watch: {
-        usePolling: true,
-      },
-    },
-  },
+
 
   markdown: {
-    // 修改代码高亮
     theme: 'vitesse-light',
-    // 开启代码块的行号
     lineNumbers: true,
-    // 支持 4 级以上的标题渲染
     headers: {
       level: [1, 2, 3, 4, 5, 6],
     },
-    // 设置文章锚点
-    anchor: {
-      slugify(str) {
-        return encodeURIComponent(str)
-      },
+    // anchor: {
+    //   slugify(str) {
+    //     return encodeURIComponent(str);
+    //   },
+    // },
+    // Ensure links to headers work correctly
+    toc: {
+      level: [1, 2, 3, 4, 5, 6],
     },
   },
 
-  // 更新时间配置
-  lastUpdated: true,
 
   themeConfig: {
     search: {
@@ -76,18 +68,15 @@ export default defineConfig({
       text: '最后更新',
     },
 
-    // 设置多级目录展开
     outline: 'deep',
     outlineTitle: '文章目录',
     logo: "/logo.png",
 
-    // 编辑按钮
     editLink: {
       pattern: '',
       text: 'Edit this page on Gitlab',
     },
 
-    // 翻页标签汉化
     docFooter: {
       prev: "上一页",
       next: "下一页",
@@ -126,4 +115,13 @@ export default defineConfig({
       message: "MIT Licensed",
     },
   },
+
+  vite: {
+    server: {
+      watch: {
+        usePolling: true,
+      },
+    },
+  },
+
 });

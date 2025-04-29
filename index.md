@@ -4,7 +4,7 @@ layout: home
 
 hero:
   image: 
-    src: /logo.png
+    src: /static/logo.png
     alt: '图片'
   name: "开发｜运维｜知识库"
   text: "牛马的摆烂人生"

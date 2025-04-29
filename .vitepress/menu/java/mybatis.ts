@@ -1,7 +1,7 @@
 // write your menu in here
-const MytatisMenu = [
+const MybatisMenu = [
     {
-      text: 'Mytatis',
+      text: 'Mybatis',
       collapsed: false,
       items: [
         {
@@ -15,4 +15,4 @@ const MytatisMenu = [
     }
   ]
   
-  export default MytatisMenu;
+  export default MybatisMenu;
