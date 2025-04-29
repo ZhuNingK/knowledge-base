@@ -19,7 +19,6 @@ const createSidebar = () => {
     '/docs/java/spring/': springMenu,
     '/docs/java/jenkins/': javaJenkinsMenu,
     '/docs/java/mybatis/': mybatisMenu,
-
     // SQL
     '/docs/sql/': SQLMenu,
 
