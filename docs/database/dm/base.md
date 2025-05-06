@@ -20,9 +20,25 @@ SELECT BANNER,* FROM v$version;
 ### 1. 用户管理
 
 ```sql
--- 创建用户
-CREATE USER [IF NOT EXISTS] <用户名> IDENTIFIED BY "密码";
+-- 切换当前用户
+conn username/password;
 
+-- 退出登录：logout 或者 disconn 命令
+```
+
+#### 创建用户
+
+```sql
+# 创建用户名为 BOOKSHOP_USER、口令为 DMsys_123、会话超时为 30 分钟的用户。
+CREATE USER BOOKSHOP_USER IDENTIFIED BY DMsys_123 LIMIT CONNECT_TIME 30;
+
+# 使用user1/DMsys_123456登录。显示密码过期。无法进行下一步操作
+CREATE USER user1 IDENTIFIED BY DMsys_123456 PASSWORD EXPIRE; 
+```
+
+#### 查看用户
+
+```sql
 -- 查询用户
 -- 查询当前用户信息
 SELECT * FROM USER_USERS;
@@ -32,17 +48,30 @@ SELECT user FROM DUAL;
 SELECT * FROM ALL_USERS;
 SELECT * FROM DBA_USERS;
 
--- 切换当前用户
-conn username/password;
+SELECT username,account_status,created FROM dba_users WHERE username='JH';
+```
 
--- 退出登录：logout 或者 disconn 命令
+#### 修改用户
 
+```sql
 -- 修改用户密码
 ALTER USER <用户名> IDENTIFIED BY 新密码;
 
--- 删除用户
-DROP USER [IF EXISTS] <用户名> CASCADE;
+# 修改用户 BOOKSHOP_USER，会话空闲期为无限制，最大连接数为 10。
+ALTER USER BOOKSHOP_USER LIMIT SESSION_PER_USER 10, CONNECT_IDLE_TIME UNLIMITED;
+
+# 赋予用户 USER2 代理权限，使用户 USER2 可以认证登录用户 USER1
+ALTER USER USER1 GRANT CONNECT THROUGH USER2;
 ```
+
+#### 删除用户
+
+```sql
+-- 删除用户
+DROP USER  <用户名> CASCADE;
+```
+
+
 
 ### 2. 权限管理
 
@@ -79,7 +108,7 @@ GRANT INSERT ANY TABLE TO "HOT";
 > 2. 建议优先通过角色（ROLE）管理权限，而非直接授予用户
 > 3. 通过 `SELECT * FROM DBA_SYS_PRIVS` 可查看完整权限列表
 
-### 权限示意图
+#### 权限示意图
 
 ```mermaid
 graph TD
@@ -99,9 +128,9 @@ graph TD
 
 
 
-### 权限基础信息
+#### 权限基础信息
 
-#### **基础连接权限**
+##### **基础连接权限**
 
 | 权限名称         | 作用描述                                                     |
 | ---------------- | ------------------------------------------------------------ |
@@ -109,7 +138,7 @@ graph TD
 
 ------
 
-#### **对象创建权限**
+##### **对象创建权限**
 
 | 权限名称           | 作用描述                   |
 | ------------------ | -------------------------- |
@@ -123,7 +152,7 @@ graph TD
 
 ------
 
-#### **数据操作权限**
+##### **数据操作权限**
 
 | 权限名称           | 作用描述                           |
 | ------------------ | ---------------------------------- |
@@ -134,7 +163,7 @@ graph TD
 
 ------
 
-#### **管理类权限**
+##### **管理类权限**
 
 | 权限名称               | 作用描述                                           |
 | ---------------------- | -------------------------------------------------- |
@@ -142,7 +171,7 @@ graph TD
 | `ALTER TABLESPACE`     | 允许修改表空间属性                                 |
 | `UNLIMITED TABLESPACE` | 允许无限制使用所有表空间（默认无此权限需单独授权） |
 
-#### **常用角色说明**
+##### **常用角色说明**
 
 | 角色名称     | 包含的核心权限                                               |
 | ------------ | ------------------------------------------------------------ |
@@ -157,23 +186,20 @@ graph TD
 
 ## 二、模式(SCHEMA)
 
+### 模式管理
+
+#### 创建模式
+
 ```sql
 -- 创建模式，并赋予用户“SYSDBA”对该模式的访问权限！（当前登录数据库的用户是其它账号 SYSDBA）
 CREATE SCHEMA <模式名> AUTHORIZATION SYSDBA;
+```
 
+#### 切换模式
+
+```sql
 -- 切换当前用户当前活动的模式：
 SET SCHEMA "<模式名>";
-
--- 为当前模式创建表，并且插入数据：
-CREATE TABLE test2_table1(tid INT);
-INSERT INTO test2_table1 VALUES (666);
-
--- Ps: 如果用户处于当前模式下，则查询语句模式下的表时，表名前面可以不添加模式名称！
-SELECT * FROM "test2"."test2_table1";
-
--- 删除 test 模式及其所有内容 - 传值 cascade 关键字时，表示连同该模式中的所有对象一并删除
-SET SCHEMA SYSDBA;  -- Ps: 这里需要注意，删除某些模式前，指定模式下不能处于“当前状态”，需要切到其它模式后再操作！
-DROP SCHEMA <模式名> CASCADE;
 
 -- 查看当前所处模式
 SELECT SESSION_USER;
@@ -182,3 +208,108 @@ SELECT SESSION_USER;
 SELECT * FROM SYSOBJECTS WHERE TYPE$='SCH';
 ```
 
+#### 删除模式
+
+```sql
+-- 删除 test 模式及其所有内容 - 传值 cascade 关键字时，表示连同该模式中的所有对象一并删除
+SET SCHEMA SYSDBA;  -- Ps: 这里需要注意，删除某些模式前，指定模式下不能处于“当前状态”，需要切到其它模式后再操作！
+DROP SCHEMA [IF EXISTS] <模式名> CASCADE;
+```
+
+> [!NOTE]
+>
+> 使用说明:
+>
+> 1. 删除不存在的模式会报错。若指定 IF EXISTS 关键字，删除不存在的模式，不会报错；
+> 2. 用该语句的用户必须具有 DBA 权限或是该模式的所有者；
+> 3. 如果使用 RESTRICT 选项，只有当模式为空时删除才能成功，否则，当模式中存在数据库对象时则删除失败。默认选项为 RESTRICT 选项；
+> 4. 如果使用 CASCADE 选项，则将整个模式、模式中的对象，以及与该模式相关的依赖关系都删除。
+
+## 三、表
+
+### 管理表
+
+#### 创建表
+
+```sql
+SQL> CREATE TABLE DMHR.EMPLOYEE
+(
+  EMPLOYEE_ID INTEGER,
+  EMPLOYEE_NAME VARCHAR2(20) NOT NULL,
+  HIRE_DATA DATE,
+  SALARY INTEGER,
+  DEPARTMENT_ID INTEGER NOT NULL
+);
+```
+
+#### 插入数据
+
+```sql
+INSERT INTO PERSON.ADDRESS(ADDRESS1,ADDRESS2,CITY,POSTALCODE) VALUES('洪山区369号金地太阳城56-1-202','','武汉市洪山区','430073');
+```
+
+#### 修改表
+
+```sql
+ALTER TABLE PRODUCTION.PRODUCT_REVIEW MODIFY NAME VARCHAR(8) DEFAULT '刘青' NOT NULL;
+```
+
+#### 查看表结构
+
+```sql
+CALL SP_TABLEDEF('PRODUCTION', 'PRODUCT');
+```
+
+### 管理数据库
+
+#### **修改数据库**
+
+```sql
+ALTER DATABASE ADD LOGFILE 'C:\DMDBMS\data\dmlog_0.log' SIZE 200;
+
+ALTER TABLE RESOURCES.EMPLOYEE_ADDRESS ADD ID INT PRIMARY KEY CHECK (ID<10000);
+```
+
+### 管理索引
+
+#### 会话相关
+
+##### 设置时区
+
+```sql
+# 设置当前会话时区为
+SET TIME ZONE '+9:00';
+
+# 设置当前会话时区为服务器所在地时区
+SET TIME ZONE LOCAL;
+```
+
+##### 大小写敏感
+
+```sql
+# 设置当前会话的大小写敏感属性
+ALTER SESSION SET CASE_SENSITIVE = TRUE;
+```
+
+### 设置ini参数
+
+#### 执行脚本
+
+```bash
+disql SYSDBA/Dmsys_123 `D:\test.sql
+```
+
+### 导入导出
+
+# dexp 导出
+
+```bash
+./dexp SYSDBA/Dmsys_123\@192.168.0.248:5236 FILE=dexp01.dmp LOG=dexp01.log DIRECTORY=/emc_2/data/dexp FULL=Y
+```
+
+#### dexp 导入
+
+```sql
+./dimp SYSDBA/Dmsys_123\@192.168.0.248:8888 FILE=/emc_2/data/dexp/dexp01.dmp
+LOG=dimp02.log DIRECTORY=/emc_2/data/dimp SCHEMAS=SYSDBA,OTHER,PERSON
+```
