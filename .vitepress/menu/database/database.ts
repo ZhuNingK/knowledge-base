@@ -1,17 +1,17 @@
 // write your menu in here
-const SQLMenu = [
+const DatabaseMenu = [
     {
         text: 'SQL',
         collapsed: false,
         items: [
-            { text: "数据库", link: "/docs/sql/base.md" },
+            { text: "数据库", link: "/docs/database/base.md" },
             {
                 text: '达梦数据基础',
                 collapsed: false,
                 items: [
                     {
                         text: "达梦数据基础命令",
-                        link: "/docs/sql/dm/base.md",
+                        link: "/docs/database/dm/base.md",
                     },
                 ]
             },
@@ -19,4 +19,4 @@ const SQLMenu = [
     }
 ]
 
-export default SQLMenu;
+export default DatabaseMenu;

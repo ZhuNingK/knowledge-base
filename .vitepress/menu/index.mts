@@ -8,8 +8,11 @@ import springMenu from "./java/spring"
 import javaJenkinsMenu from "./java/jenkins"
 import mybatisMenu from "./java/mybatis"
 
-// SQL
-import SQLMenu from "./sql/sql"
+// database
+import DatebaseMenu from "./database/database"
+
+// project
+import ProjectMenu from './project/ruoyi'
 
 const createSidebar = () => {
   return {
@@ -19,8 +22,10 @@ const createSidebar = () => {
     '/docs/java/spring/': springMenu,
     '/docs/java/jenkins/': javaJenkinsMenu,
     '/docs/java/mybatis/': mybatisMenu,
-    // SQL
-    '/docs/sql/': SQLMenu,
+    // database
+    '/docs/database/': DatebaseMenu,
+    // project
+    '/docs/project/ruoyi/': ProjectMenu,
 
   }
 }
