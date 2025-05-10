@@ -5,7 +5,6 @@ import devopsMenu from "./devops/base"
 
 // java
 import springMenu from "./java/spring"
-import javaJenkinsMenu from "./java/jenkins"
 import mybatisMenu from "./java/mybatis"
 
 // database
@@ -20,7 +19,6 @@ const createSidebar = () => {
     '/docs/devops/base/': devopsMenu,
     // java
     '/docs/java/spring/': springMenu,
-    '/docs/java/jenkins/': javaJenkinsMenu,
     '/docs/java/mybatis/': mybatisMenu,
     // database
     '/docs/database/': DatebaseMenu,

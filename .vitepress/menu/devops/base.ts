@@ -38,7 +38,11 @@ const devopsMenu = [
         items: [
           {
             text: 'docker安装',
-            link: '/docs/devops/base/docker/install.md',
+            link: '/docs/devops/base/docker/docker-install.md',
+          },
+          {
+            text: 'docker-compose安装',
+            link: '/docs/devops/base/docker/docker-compose-install.md',
           }
         ]
       },
@@ -60,6 +64,20 @@ const devopsMenu = [
             text: 'kubeSphere多节点安装',
             link: '/docs/devops/base/k8s/install.md',
           },
+          {
+            text: 'jenkins+K8s流水线',
+            collapsed: false,
+            items: [
+              {
+                text: 'springboot项目-deployment',
+                link: '/docs/devops/base/k8s/jenkins/springboot/deployment.md',
+              },
+              {
+                text: 'springboot项目-service',
+                link: '/docs/devops/base/k8s/jenkins/springboot/service.md',
+              }
+            ]
+          }
         ]
       },
       {

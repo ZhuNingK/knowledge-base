@@ -89,28 +89,47 @@ yum install -y bash-completion
 docker常用命令
 
 ```bash
+# 查看docker服务状态
 systemctl status docker
+# 启动docker服务
 systemctl start docker
+# 重启docker服务
 systemctl restart docker
+# 停止docker服务
 systemctl stop doceker
-
+# 开机docker开机自启
 systemctl enable docker
+# 关闭docker开机自启
 systemctl disable docker
-```
 
-#### 3.3 安装docker-compose
+# 查找应用
+docker search rabbitmq
+# 拉取镜像
+docker pull rabbitmq
+# 查看镜像
+docker images
+# 删除镜像
+docker rmi [IMAGE ID]
+#查看启动的容器
+docker ps -a
+# 启动docker
+docker start [IMAGE]/[name]
 
-```bash
-# docker-compose下载地址
-https://github.com/docker/compose/releases/download/v2.3.4/docker-compose-linux-x86_64
-# 将下载好的安装包上传到服务器后，将文件移动到/usr/local/bin下，并改名为docker-compose
-mv docker-compose-Linux-x86_64 /usr/local/bin/docker-compose
-# 添加docker-compose文件的执行权限
-chmod +x /usr/local/bin/docker-compose
-# 创建软链接
-ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
-# 查看docker-compose版本
-docker-compose version
+7、停止docker：docker stop [IMAGE]/[name]
+
+8、删除docker：docker rm [IMAGE]/[name]
+
+9、查看日志：docker logs [name]
+
+10、进入docker容器：docker exec -it [容器id或容器名] /bin/bash
+
+11、退出容器到宿主机：exit
+
+12、修改镜像名称：docker tag 原镜像名称 新镜像名称
+
+13、docker inspect [容器id或容器名]
+
+14、docker update
 ```
 
 

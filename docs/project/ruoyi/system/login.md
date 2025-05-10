@@ -53,12 +53,10 @@ if (验证码配置为开启) {
 
 因此，`authenticationManager.authenticate(authenticationToken)` 会触发 `UserDetailsServiceImpl.loadUserByUsername`，以获取用户的详细信息用于认证。
 
-```java
-
-```
-
-
+#### 记录登录信息
 
 ## 获取用户信息
+
+
 
 ## 获取路由信息
