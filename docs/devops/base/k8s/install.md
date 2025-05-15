@@ -228,8 +228,6 @@ spec:
 >
 > - 在安装前，请确保端口 `6443` 没有被其他服务占用，否则在安装时会产生冲突（`6443` 为 API 服务器的默认端口）。
 
-
-
 #### roleGroups
 
 - `etcd`：etcd 节点名称
@@ -288,48 +286,8 @@ export KKZONE=cn
 
 ### 4. 验证安装
 
-安装完成后，会看到如下内容：
-
-```shell
-#####################################################
-###              Welcome to KubeSphere!           ###
-#####################################################
-Console: http://192.168.0.2:30880
-Account: admin
-Password: P@88w0rd
-NOTES：
-  1. After you log into the console, please check the
-     monitoring status of service components in
-     the "Cluster Management". If any service is not
-     ready, please wait patiently until all components
-     are up and running.
-  2. Please change the default password after login.
-#####################################################
-https://kubesphere.io             20xx-xx-xx xx:xx:xx
-#####################################################
-```
-
 通过 `<NodeIP:30880` 使用默认帐户和密码 (`admin/P@88w0rd`) 访问 KubeSphere 的 Web 控制台。
 
 > [!note]
 >
 > 若要访问控制台，需要根据环境配置端口转发规则。还请确保在安全组中打开了端口 `30880`。
-
-## 启用 kubectl 自动补全
-
-KubeKey 不会启用 kubectl 自动补全功能，请参见以下内容并将其打开：
-
-> [!note]
->
-> 请确保已安装 bash-autocompletion 并可以正常工作。
-
-```shell
-# Install bash-completion
-apt-get install bash-completion
-# Source the completion script in your ~/.bashrc file
-echo 'source <(kubectl completion bash)' >>~/.bashrc
-# Add the completion script to the /etc/bash_completion.d directory
-kubectl completion bash >/etc/bash_completion.d/kubectl
-```
-
-详细信息[见此](https://kubernetes.io/docs/tasks/tools/install-kubectl/#enabling-shell-autocompletion)。

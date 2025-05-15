@@ -114,22 +114,20 @@ docker rmi [IMAGE ID]
 docker ps -a
 # 启动docker
 docker start [IMAGE]/[name]
-
-7、停止docker：docker stop [IMAGE]/[name]
-
-8、删除docker：docker rm [IMAGE]/[name]
-
-9、查看日志：docker logs [name]
-
-10、进入docker容器：docker exec -it [容器id或容器名] /bin/bash
-
-11、退出容器到宿主机：exit
-
-12、修改镜像名称：docker tag 原镜像名称 新镜像名称
-
-13、docker inspect [容器id或容器名]
-
-14、docker update
+# 停止docker
+docker stop [IMAGE]/[name]
+# 删除docker
+docker rm [IMAGE]/[name]
+# 查看日志
+docker logs [name]
+# 进入docker容器
+docker exec -it [容器id或容器名] /bin/bash
+# 退出容器到宿主机：
+exit
+# 修改镜像名称
+docker tag 原镜像名称 新镜像名称
+docker inspect [容器id或容器名]
+docker update
 ```
 
 

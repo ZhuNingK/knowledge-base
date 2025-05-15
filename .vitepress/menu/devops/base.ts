@@ -65,6 +65,10 @@ const devopsMenu = [
             link: '/docs/devops/base/k8s/install.md',
           },
           {
+            text: 'kuberctl命令',
+            link: '/docs/devops/base/k8s/kubectl.md',
+          },
+          {
             text: 'jenkins+K8s流水线',
             collapsed: false,
             items: [
