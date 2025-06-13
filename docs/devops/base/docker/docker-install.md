@@ -69,9 +69,9 @@ EOF
 systemctl daemon-reload
 ```
 
-#### 3.2 安装docker
+#### 3.2 安装docker及其常用命令
 
-安装docker
+##### 安装docker
 
 ```bash
 # 查看所有可用的docker版本:
@@ -86,7 +86,7 @@ yum install -y bash-completion
 
 ```
 
-docker常用命令
+##### docker服务
 
 ```bash
 # 查看docker服务状态
@@ -101,7 +101,11 @@ systemctl stop doceker
 systemctl enable docker
 # 关闭docker开机自启
 systemctl disable docker
+```
 
+##### docker常用命令
+
+```bash
 # 查找应用
 docker search rabbitmq
 # 拉取镜像
@@ -127,10 +131,78 @@ exit
 # 修改镜像名称
 docker tag 原镜像名称 新镜像名称
 docker inspect [容器id或容器名]
-docker update
+# docker登录
+docker login -uadmin -pHarbor12345 192.168.3.12:6007
+# docker退出
+docker logout 192.168.3.12:6007
 ```
 
+###### docker update
 
+```bash
+# 更新启动方式
+docker update [容器名] --restart=no/on-failure/always
+# 更新容器分配内存
+docker update [容器名] -m 3g  --memory-swap -1
+docker run  -e TZ="Asia/Shanghai" -p 8090:8090 -d --name ch ch/ch
+```
 
+###### docker创建和启动
 
+```bash
+docker run \
+-d \
+--name rabbitmq \
+-p 5672:5672 \
+-p 15672:15672 \
+-m 2g \
+--memory-swap -1 \
+-v $(pwd)/data:/var/lib/rabbitmq \
+--hostname myRabbit \
+-e RABBITMQ_DEFAULT_VHOST=my_vhost  \
+-e RABBITMQ_DEFAULT_USER=admin \
+-e RABBITMQ_DEFAULT_PASS=admin \
+[IMAGE ID]
 
+$(pwd)是docker支持的指定当前目录的方法
+
+-d：后台运行容器
+--name：指定容器名
+-p：端口映射。（运行之后必须与机器的端口进行映射，否则访问不到）
+-v：映射目录或文件，本地目录:容器目录
+--hostname：主机名（RabbitMQ的一个重要注意事项是它根据所谓的 “节点名称” 存储数据，默认为主机名）
+-e：指定环境变量。（RABBITMQ_DEFAULT_VHOST：默认虚拟机名；RBBITQ_DEFAULT_USER：默认的用户名；RABBITMQ_DEFAULT_PASS：认用户名密码）
+--restart=always	容器重启策略(重启docker时，自动启动相关容器)
+--privileged=true，以特权方式启动容器，解决报错问题（Permission denied）
+```
+
+> [!NOTE]
+>
+> --restart
+>
+> - no，默认策略，在容器退出时不重启容器
+> - on-failure，在容器非正常退出时（退出状态非0），才会重启容器
+> - on-failure:3，在容器非正常退出时重启容器，最多重启3次
+> - always，在容器退出时总是重启容器
+> - unless-stopped，在容器退出时总是重启容器，但是不考虑在Docker守护进程启动时就已经停止了的容器
+
+#### 3.3 镜像推送到harbor
+
+- SOURCE_IMAGE 原来的镜像名称
+
+- REPOSITORY 现在的镜像名称
+
+  ```bash
+  # 镜像下载
+  docker pull nginx:1.21.3
+  
+  # 在项目中标记镜像
+  docker tag SOURCE_IMAGE[:TAG] 192.168.3.12:6007/test/REPOSITORY[:TAG]
+  docker tag nginx:1.21.3 192.168.3.12:6007/test/nginx:v1.21.9
+  
+  # 推送镜像到harbor
+  docker push 192.168.3.12:6007/test/REPOSITORY[:TAG]
+  docker push 192.168.3.12:6001/test/nginx:v1.21.9
+  ```
+
+  

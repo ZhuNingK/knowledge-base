@@ -23,12 +23,6 @@ const createNav = () => {
                 { text: "DM数据库", link: "/docs/database/base.md" },
             ],
         },
-        {
-            text: "项目信息",
-            items: [
-                { text: "ruoyi", link: "/docs/project/ruoyi/ruoyi.md" },
-            ],
-        },
     ]
 
 }
