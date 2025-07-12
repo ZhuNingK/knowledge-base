@@ -11,8 +11,8 @@ Nginx 配置文件主要分成全局块，events块，http块，server块，upst
 > 需确定日志文件以及 PID 文件存放的目录已创建。
 >
 > ```
-> mkdir -p /data/log/nginx1.24
-> mkdir -p /var/run/nginx1.24
+> mkdir -p /data/logs/nginx1.24
+> mkdir -p /data/run/nginx1.24
 > ```
 
 ------
@@ -29,9 +29,9 @@ worker_cpu_affinity auto;
 # 一个 Nginx 进程打开的最多文件描述符数目
 worker_rlimit_nofile 65535;
 # 在 Main 区块中全局配置（默认为 Nginx 安装目录）
-error_log /data/log/nginx1.24/error.log error;
+error_log /data/logs/nginx1.24/error.log error;
 # 设置 pid 文件的存放路径（默认为 Nginx 安装目录），防止 Nginx 服务被启动多次
-pid /var/run/nginx1.24/nginx.pid;
+pid /data/run/nginx1.24/nginx.pid;
 ```
 
 > [!TIP]
@@ -138,8 +138,8 @@ http {
         '"http_user_agent":"$http_user_agent",'               #用户终端浏览器等信息
         '"status":"$status"}';                                #http响应代码
 
-    # 需新增 /var/log/nginx1.24 目录
-    access_log  /var/log/nginx1.24/access.log main_json;
+    # 需新增 /data/logs/nginx1.24 目录
+    access_log  /data/logs/nginx1.24/access.log main_json;
 
     # server 虚拟主机
     include /usr/local/nginx1.24/conf/conf.d/*.conf;

@@ -3,3 +3,4 @@
 /.vitepress/cache/
 /.vitepress/dist/
 /.DS_Store
+.vitepress/.DS_Store

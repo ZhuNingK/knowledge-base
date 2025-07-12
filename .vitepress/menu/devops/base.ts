@@ -6,7 +6,7 @@ const devopsMenu = [
     items: [
       {
         text: 'linux',
-        collapsed: false,
+        collapsed: true,
         items: [
           {
             text: 'linux磁盘挂载',
@@ -15,9 +15,27 @@ const devopsMenu = [
         ]
       },
       {
-        text: 'nginx',
-        collapsed: false,
+        text: 'java',
+        collapsed: true,
         items: [
+          {
+            text: 'java安装',
+            link: '/docs/devops/base/java/install-jdk.md',
+          },
+          {
+            text: 'Maven 安装及配置',
+            link: '/docs/devops/base/java/install-maven.md',
+          }
+        ]
+      },
+      {
+        text: 'nginx',
+        collapsed: true,
+        items: [
+          {
+            text: 'nginx安装',
+            link: '/docs/devops/base/nginx/install.md',
+          },
           {
             text: 'nginx+lua安装',
             link: '/docs/devops/base/nginx/nginx+lua_install.md',
@@ -34,7 +52,7 @@ const devopsMenu = [
       },
       {
         text: 'docker',
-        collapsed: false,
+        collapsed: true,
         items: [
           {
             text: 'docker安装',
@@ -48,7 +66,7 @@ const devopsMenu = [
       },
       {
         text: 'harbor',
-        collapsed: false,
+        collapsed: true,
         items: [
           {
             text: 'harbor安装',
@@ -58,7 +76,7 @@ const devopsMenu = [
       },
       {
         text: 'k8s',
-        collapsed: false,
+        collapsed: true,
         items: [
           {
             text: 'kubeSphere多节点安装',
@@ -70,7 +88,7 @@ const devopsMenu = [
           },
           {
             text: 'jenkins+K8s流水线',
-            collapsed: false,
+            collapsed: true,
             items: [
               {
                 text: 'springboot项目-deployment',
@@ -86,7 +104,7 @@ const devopsMenu = [
       },
       {
         text: 'jenkins',
-        collapsed: false,
+        collapsed: true,
         items: [
           {
             text: 'k8s流水线',
@@ -95,7 +113,7 @@ const devopsMenu = [
       },
       {
         text: 'nfs',
-        collapsed: false,
+        collapsed: true,
         items: [
           {
             text: 'nfs安装',

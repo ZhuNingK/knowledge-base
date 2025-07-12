@@ -11,6 +11,10 @@ const createNav = () => {
             ],
         },
         {
+            text: "中间件",
+            link: "/docs/middleware/base.md"
+        },
+        {
             text: "Java",
             items: [
                 { text: "Spring框架", link: "/docs/java/spring/spring.md" },

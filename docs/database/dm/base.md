@@ -301,7 +301,7 @@ disql SYSDBA/Dmsys_123 `D:\test.sql
 
 ### 导入导出
 
-# dexp 导出
+#### dexp 导出
 
 ```bash
 ./dexp SYSDBA/Dmsys_123\@192.168.0.248:5236 FILE=dexp01.dmp LOG=dexp01.log DIRECTORY=/emc_2/data/dexp FULL=Y
