@@ -14,7 +14,7 @@ const DatabaseMenu = [
                     },
                     {
                         text: "MYSQL基础命令",
-                        link: "/docs/database/mysql/cluster.md"
+                        link: "/docs/database/mysql/base-mysql8.0.md"
                     }
                 ]
             },
