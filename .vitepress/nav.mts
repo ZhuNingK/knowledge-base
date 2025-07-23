@@ -6,9 +6,7 @@ const createNav = () => {
         },
         {
             text: "Devops",
-            items: [
-                { text: "基础运维", link: "/docs/devops/base/base.md" },
-            ],
+            link: "/docs/devops/base/base.md"
         },
         {
             text: "中间件",
@@ -23,9 +21,7 @@ const createNav = () => {
         },
         {
             text: "database",
-            items: [
-                { text: "DM数据库", link: "/docs/database/base.md" },
-            ],
+            link: '/docs/database/base.md'
         },
     ]
 

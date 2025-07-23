@@ -4,7 +4,20 @@ const DatabaseMenu = [
         text: 'SQL',
         collapsed: false,
         items: [
-            { text: "数据库", link: "/docs/database/base.md" },
+            {
+                text: "MYSQL",
+                collapsed: true,
+                items: [
+                    {
+                        text: "安装Mysql8.0",
+                        link: "docs/database/mysql/install-mysql8.0.md"
+                    },
+                    {
+                        text: "MYSQL基础命令",
+                        link: "/docs/database/mysql/cluster.md"
+                    }
+                ]
+            },
             {
                 text: '达梦数据基础',
                 collapsed: false,
