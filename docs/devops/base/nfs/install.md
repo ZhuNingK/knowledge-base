@@ -46,32 +46,51 @@ sudo chmod 1777 /data/nfs_shared  # Sticky bit防文件误删
 
 ```bash
 # 生产环境推荐配置：
-/data/nfs_shared 192.168.1.0/24(rw,sync,all_squash,anonuid=1000,anongid=1000,no_subtree_check)
-
-# 参数说明：
-# all_squash - 强制映射客户端用户
-# anonuid/anongid - 映射到指定UID/GID
-# subtree_check - 禁用子目录检查提升性能
+/data/nfs_shared 192.210.19.56(rw,no_root_squash,no_all_squash,sync,no_subtree_check)
 ```
+
+> [!NOTE]
+>
+> 这行代码的意思是把共享目录 / data/share / 共享给 192.210.19.56 这个客户端 ip，后面括号里的内容是权限参数，其中：
+>
+> rw 表示设置目录可读写。
+>
+> sync 表示数据会同步写入到内存和硬盘中，相反 rsync 表示数据会先暂存于内存中，而非直接写入到硬盘中。
+>
+> no_root_squash NFS 客户端连接服务端时如果使用的是 root 的话，那么对服务端分享的目录来说，也拥有 root 权限。
+>
+> no_all_squash 不论 NFS 客户端连接服务端时使用什么用户，对服务端分享的目录来说都不会拥有匿名用户权限。
+>
+> 如果有多个共享目录配置，则使用多行，一行一个配置。
+
+
 
 ### 4. 服务管理
 
 ```bash
 # 所有发行版通用命令：
-sudo systemctl enable --now rpcbind nfs-server  # 启动并设置自启
 sudo exportfs -arv  # 动态重载配置
+sudo systemctl enable --now rpcbind nfs-server  # 启动并设置自启
+showmount -e localhost # 验证查看服务端 (本机) 是否可连接：
 ```
 
 ### 5. 防火墙策略（生产环境必须）
 
 ```bash
-# CentOS/RHEL/麒麟：
-sudo firewall-cmd --permanent --add-service={nfs,mountd,rpc-bind}
-sudo firewall-cmd --reload
+vim /etc/sysconfig/nfs
 
-# Ubuntu/统信：
-sudo ufw allow from 192.168.1.0/24 to any port {111,2049,20048}
+RQUOTAD_PORT=1001
+LOCKD_TCPPORT=30001
+LOCKD_UDPPORT=30002
+MOUNTD_PORT=1002
 ```
+
+```bash
+firewall-cmd --zone=public --add-port=111/tcp --add-port=111/udp --add-port=2049/tcp --add-port=2049/udp --add-port=1001/tcp --add-port=1001/udp --add-port=1002/tcp --add-port=1002/udp --add-port=30001/tcp --add-port=30002/udp --permanent
+firewall-cmd --reload
+```
+
+
 
 ------
 
@@ -85,26 +104,59 @@ sudo yum install -y nfs-utils
 
 # apt系客户端：
 sudo apt install -y nfs-common
+
+# 查看是否可以连接服务器挂载
+showmount -e 192.210.19.205
 ```
 
 ### 2. 手动挂载
 
 ```bash
-sudo mkdir -p /mnt/nfs
-sudo mount -t nfs -o vers=4.2,noatime,nodiratime,rsize=131072,wsize=131072 \
-192.168.1.100:/data/nfs_shared /mnt/nfs
+mkdir -p /data/resource
+sudo mount -t nfs 192.210.19.205:/data/share /data/resource -o nolock,nfsvers=3,vers=3
 ```
+
+> [!TIP]
+>
+> 如果不加 -o nolock,nfsvers=3 则在挂载目录下的文件属主和组都是 nobody，如果指定 nfsvers=3 则显示 root。
+
+```bash
+# 解除挂载
+umount /data/resource
+```
+
+
 
 ### 3. 自动挂载（/etc/fstab）
 
 ```bash
-192.168.1.100:/data/nfs_shared  /mnt/nfs  nfs4  _netdev,noatime,nodiratime,vers=4.2,proto=tcp,hard,intr,timeo=600,retrans=2  0 0
-
-# 关键参数：
-# _netdev - 等待网络就绪
-# hard/intr - 断线重试策略
-# timeo - 超时时间（1/10秒）
+vim /etc/rc.d/rc.local
+#在文件最后添加一行：
+mount -t nfs 192.168.11.34:/data/share /mnt/share/ -o nolock,nfsvers=3,vers=3
 ```
+
+>[!TIP]
+>
+>如果按本文上面的部分配置好，NFS 即部署好了，但是如果你重启客户端系统，发现不能随机器一起挂载，需要再次手动操作挂载，这样操作比较麻烦，因此我们需要设置开机自动挂载。我们不要把挂载项写到 / etc/fstab 文件中，因为开机时先挂载本机磁盘再启动网络，而 NFS 是需要网络启动后才能挂载的，所以我们把挂载命令写入到 / etc/rc.d/rc.local 文件中即可.
+
+### 4.测试验证
+
+```bash
+df -Th
+
+文件系统    容量 已用 可用 已用% 挂载点
+/dev/mapper/centos-root   18G 5.0G 13G 29% /
+devtmpfs      904M  0 904M 0% /dev
+tmpfs       916M  0 916M 0% /dev/shm
+tmpfs       916M 9.3M 906M 2% /run
+tmpfs       916M  0 916M 0% /sys/fs/cgroup
+/dev/sda1      497M 164M 334M 33% /boot
+tmpfs       184M  0 184M 0% /run/user/0
+192.168.11.31:/data/share  18G 1.7G 16G 10% /mnt/share
+
+```
+
+
 
 ------
 

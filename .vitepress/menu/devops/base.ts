@@ -14,6 +14,16 @@ const devopsMenu = [
           },
         ]
       },
+    {
+        text: 'openssh',
+        collapsed: true,
+        items: [
+          {
+            text: 'openSSH升级',
+            link: '/Users/zhuningkang/Documents/git/github/knowledge-base/docs/devops/base/server-os/upgrade-openssh.md',
+          }
+        ]
+    },
       {
         text: 'java',
         collapsed: true,
