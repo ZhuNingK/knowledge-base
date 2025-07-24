@@ -93,8 +93,7 @@ tar -zxvf openssh-9.9p1.tar.gz
 cd /usr/local/src/openssh-9.9p1
 ./configure --prefix=/usr/local/openssh9.9 \
     --sysconfdir=/etc/ssh \
-    --with-openssl-includes=/usr/local/include \
-    --with-ssl-dir=/usr/local/openssl1.1 \
+    --with-ssl-dir=/usr \
     --with-zlib --with-md5-passwords --with-pam
 make && make install
 ```

@@ -19,10 +19,6 @@
 - 截止2023年7月，JDK8 最新稳定版为 jdk-8u371-linux-x64.tar.gz
 :::
 
-:::warning
-软件包下载比较慢的情况下，可下载团队软件库中对应的安装包。命令示例：`wget <Software Download Link> -O <Software Package Name>`。
-:::
-
 ```bash
 cd /usr/local/src
 ```
@@ -65,10 +61,6 @@ Java HotSpot(TM) 64-Bit Server VM (build 25.371-b11, mixed mode)
 :::tip
 - 官网下载需要登录，地址：https://www.oracle.com/java/technologies/downloads/#java11
 - 截止2025年6月2日，JDK11 最新稳定版为 11.0.27
-:::
-
-:::warning
-软件包下载比较慢的情况下，可下载团队软件库中对应的安装包。命令示例：`wget <Software Download Link> -O <Software Package Name>`。
 :::
 
 ```bash

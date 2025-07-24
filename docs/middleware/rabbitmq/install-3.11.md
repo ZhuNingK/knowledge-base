@@ -41,10 +41,6 @@ wget https://github.com/rabbitmq/erlang-rpm/releases/download/v25.3.2.16/erlang-
 rpm -ivh erlang-25.3.2.16-1.el8.x86_64.rpm
 ```
 
-:::warning
-软件包下载比较慢的情况下，可下载团队软件库中对应的安装包。命令示例：`wget <Software Download Link> -O <Software Package Name>`。
-:::
-
 ### 0x02.验证是否安装成功
 
 ```bash
@@ -107,10 +103,6 @@ mv /usr/local/src/rabbitmq_server-3.11.28 /usr/local/rabbitmq_server3.11
 ```bash
 chown -R rabbitmq:rabbitmq /usr/local/rabbitmq_server3.11
 ```
-
-:::warning
-软件包下载比较慢的情况下，可下载团队软件库中对应的安装包。命令示例：`wget <Software Download Link> -O <Software Package Name>`。
-:::
 
 ### 0x03.配置环境变量
 
@@ -286,10 +278,6 @@ cd /usr/local/src
 wget https://github.com/rabbitmq/erlang-rpm/releases/download/v25.3.2/erlang-25.3.2-1.el7.x86_64.rpm
 rpm -ivh erlang-25.3.2-1.el7.x86_64.rpm
 ```
-
-:::warning
-软件包下载比较慢的情况下，可下载团队软件库中对应的安装包。命令示例：`wget <Software Download Link> -O <Software Package Name>`。
-:::
 
 ### 0x02.验证是否安装成功
 

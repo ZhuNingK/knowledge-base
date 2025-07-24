@@ -35,10 +35,6 @@ cd /usr/local/src
 wget https://cdn.mysql.com/Downloads/MySQL-8.0/mysql-8.0.37-linux-glibc2.12-x86_64.tar.xz
 ```
 
-:::warning
-软件包下载比较慢的情况下，可下载团队软件库中对应的安装包。命令示例：`wget <Software Download Link> -O <Software Package Name>`。
-:::
-
 ### 0x02.解压文件并复制
 
 ```bash

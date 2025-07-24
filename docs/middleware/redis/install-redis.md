@@ -52,10 +52,6 @@ wget http://download.redis.io/releases/redis-7.0.15.tar.gz
 tar -zxvf redis-7.0.15.tar.gz
 ```
 
-:::warning
-软件包下载比较慢的情况下，可下载团队软件库中对应的安装包。命令示例：`wget <Software Download Link> -O <Software Package Name>`。
-:::
-
 ### 0x02.编译并安装
 
 ```bash

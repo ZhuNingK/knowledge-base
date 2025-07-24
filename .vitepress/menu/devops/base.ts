@@ -20,7 +20,7 @@ const devopsMenu = [
         items: [
           {
             text: 'openSSH升级',
-            link: '/Users/zhuningkang/Documents/git/github/knowledge-base/docs/devops/base/server-os/upgrade-openssh.md',
+            link: '/docs/devops/base/server-os/upgrade-openssh.md',
           }
         ]
     },

@@ -52,10 +52,6 @@ tar xvf elasticsearch-7.17.24-linux-x86_64.tar.gz
 mv /usr/local/src/elasticsearch-7.17.24 /usr/local/elasticsearch7.17
 ```
 
-:::warning
-软件包下载比较慢的情况下，可下载团队软件库中对应的安装包。命令示例：`wget <Software Download Link> -O <Software Package Name>`。
-:::
-
 ### 0x03. 创建数据及日志目录
 
 ```bash

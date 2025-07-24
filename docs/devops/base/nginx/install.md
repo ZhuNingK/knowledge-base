@@ -46,10 +46,6 @@ useradd -g nginx nginx -s /sbin/nologin
 
 ### 0x02.下载源代码包并解压缩
 
-:::tip
-软件包下载比较慢的情况下，可下载团队软件库中对应的安装包。命令示例：`wget <Software Download Link> -O <Software Package Name>`。
-:::
-
 ```bash
 cd /usr/local/src
 wget http://nginx.org/download/nginx-1.24.0.tar.gz

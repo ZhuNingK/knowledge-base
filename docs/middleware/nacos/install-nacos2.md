@@ -32,10 +32,6 @@ tar -zxvf nacos-server-2.2.3.tar.gz
 mv /usr/local/src/nacos /usr/local/nacos2.2
 ```
 
-:::warning
-软件包下载比较慢的情况下，可下载团队软件库中对应的安装包。命令示例：`wget <Software Download Link> -O <Software Package Name>`。
-:::
-
 ## 三、初始化数据库
 
 <font color="red">如果前期规划数据库不安装在当前服务器中，不允许为了数据初始化而在本机安装数据库软件。</font>
