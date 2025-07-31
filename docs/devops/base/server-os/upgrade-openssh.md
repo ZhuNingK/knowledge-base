@@ -93,7 +93,8 @@ tar -zxvf openssh-9.9p1.tar.gz
 cd /usr/local/src/openssh-9.9p1
 ./configure --prefix=/usr/local/openssh9.9 \
     --sysconfdir=/etc/ssh \
-    --with-ssl-dir=/usr \
+    --with-openssl-includes=/usr/local/include \
+    --with-ssl-dir=/usr/local/openssl1.1 \
     --with-zlib --with-md5-passwords --with-pam
 make && make install
 ```
@@ -270,8 +271,6 @@ tar zxvf openssh-10.0p1.tar.gz
 cd /usr/local/src/openssh-10.0p1/
 ./configure --prefix=/usr/local/openssh10.0 \
     --sysconfdir=/etc/ssh \
-    --with-openssl-includes=/usr/local/include \
-    --with-ssl-dir=/usr/bin/openssl \
     --with-zlib --with-md5-passwords --with-pam
 make && make install
 ```
@@ -285,7 +284,7 @@ cd /usr/local/src/openssh-10.0p1/
 ./configure --prefix=/usr/local/openssh10.0 \
     --sysconfdir=/etc/ssh \
     --with-openssl-includes=/usr/local/include \
-    --with-ssl-dir=/usr/bin/openssl \
+    --with-ssl-dir=/usr/local/openssl1.1 \
     --with-zlib --with-md5-passwords --with-pam
 make && make install
 ```
@@ -316,9 +315,9 @@ mv /usr/bin/ssh-keygen /usr/bin/ssh-keygen.bak_$(date "+%Y%m%d")
 6. 配置新版本执行文件
 
 ```bash
-ln -s /usr/local/openssh9.9/bin/ssh /usr/bin/ssh
-ln -s /usr/local/openssh9.9/bin/ssh-keygen /usr/bin/ssh-keygen 
-ln -s /usr/local/openssh9.9/sbin/sshd /usr/sbin/sshd
+ln -s /usr/local/openssh10.0/bin/ssh /usr/bin/ssh
+ln -s /usr/local/openssh10.0/bin/ssh-keygen /usr/local/ssh-keygen
+ln -s /usr/local/openssh10.0/sbin/sshd /usr/sbin/sshd
 ```
 
 
@@ -331,8 +330,8 @@ rm  -f /usr/lib/systemd/system/sshd.service
 
 # 配置新版本启动脚本
 mv  /etc/init.d/sshd /etc/init.d/sshd.bak
-cp -a /usr/local/src/openssh-9.9p1/contrib/redhat/sshd.init /etc/init.d/sshd
-cp -a /usr/local/src/openssh-9.9p1/contrib/redhat/sshd.pam /etc/pam.d/sshd
+cp -a /usr/local/src/openssh-10.0p1/contrib/redhat/sshd.init /etc/init.d/sshd
+cp -a /usr/local/src/openssh-10.0p1/contrib/redhat/sshd.pam /etc/pam.d/ssd
 
 # 配置可执行权限 
 chmod +x /etc/init.d/sshd
@@ -347,9 +346,10 @@ systemctl daemon-reload
 8. <font color="red">设置开机自启（必须执行）</font>
 
 ```shell
-sudo systemctl enable --now sshd.service
-sudo systemctl status  sshd.service
+systemctl enable --now sshd.service
 systemctl is-enabled sshd.service
+systemctl status  sshd.service
+systemctl restart  sshd.service
 ```
 
 9. 验证安装

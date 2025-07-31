@@ -2,7 +2,7 @@
 
 最新稳定版：https://nginx.org/en/download.html
 
-截止2024年11月，Nginx 1.24.*（*表示最新的补丁版本） 系列最新稳定版为 1.24.0
+截止2024年11月，Nginx 1.26.*（*表示最新的补丁版本） 系列最新稳定版为 1.26.0
 
 :::warning
 <font color="red"><b>当 Nginx 作为最外层的反向代理时，需安装 Lua 扩展，用于实现如下功能：</b></font>
@@ -16,7 +16,7 @@
 :::tip
 
 - 源码包统一放置于 /usr/local/src 目录
-- 软件安装到 /usr/local 中，并以软件名及主次版本号命名，如 nginx1.24
+- 软件安装到 /usr/local 中，并以软件名及主次版本号命名，如 nginx1.26
   :::
 
 ## 1.安装必要的库
@@ -48,14 +48,15 @@ useradd -g nginx nginx -s /sbin/nologin
 
 ```bash
 cd /usr/local/src
-wget http://nginx.org/download/nginx-1.24.0.tar.gz
-tar -zxvf nginx-1.24.0.tar.gz
+wget http://nginx.org/download/nginx-1.26.3.tar.gz
+tar -zxvf nginx-1.26.3
+.tar.gz
 ```
 
 ### 0x03.编译并安装
 
 ```bash
-cd /usr/local/src/nginx-1.24.0
+cd /usr/local/src/nginx-1.26.3
 ```
 
 :::warning
@@ -70,7 +71,7 @@ http://nginx.org/en/docs/configure.html
 --- el-tab-item 自定义openssl路径
 
 ```bash
-./configure --prefix=/usr/local/nginx1.24 \
+./configure --prefix=/usr/local/nginx1.26 \
     --with-http_stub_status_module \
     --with-http_gzip_static_module \
     --with-http_realip_module \
@@ -84,7 +85,7 @@ http://nginx.org/en/docs/configure.html
 --- el-tab-item 系统默认openssl路径
 
 ```bash
-./configure --prefix=/usr/local/nginx1.24 \
+./configure --prefix=/usr/local/nginx1.26 \
     --with-http_stub_status_module \
     --with-http_gzip_static_module \
     --with-http_realip_module \
@@ -101,7 +102,7 @@ make && make install
 ### 0x04.添加环境变量
 
 ```bash
-echo 'PATH=$PATH:/usr/local/nginx1.24/sbin
+echo 'PATH=$PATH:/usr/local/nginx1.26/sbin
 export PATH' >> /etc/profile
 ```
 
@@ -114,13 +115,13 @@ source /etc/profile
 创建日志目录（日志目录所属用户需同启动 nginx 服务的用户一致）
 
 ```bash
-mkdir -pv /data/logs/nginx1.24
+mkdir -pv /data/logs/nginx1.26
 ```
 
 编辑 nginx.conf 文件
 
 ```bash
-vim /usr/local/nginx1.24/conf/nginx.conf
+vim /usr/local/nginx1.26/conf/nginx.conf
 ```
 
 配置文件内容请参照<a href="/devops/baseops/nginx/configuration.html" target="_blank">Nginx基础配置</a>
@@ -137,7 +138,7 @@ vim /usr/local/nginx1.24/conf/nginx.conf
 
 :::tip
 
-- 为了便于后期维护，约定在 nginx.service 中明确加载的配置文件路径（如：-c /usr/local/nginx1.24/conf/nginx.conf）。
+- 为了便于后期维护，约定在 nginx.service 中明确加载的配置文件路径（如：-c /usr/local/nginx1.26/conf/nginx.conf）。
 - 配置文件中不支持在每行命令的后面添加注释
   :::
 
@@ -154,9 +155,9 @@ After=network.target
 
 [Service]
 Type=forking
-ExecStart=/usr/local/nginx1.24/sbin/nginx -c /usr/local/nginx1.24/conf/nginx.conf
-ExecReload=/usr/local/nginx1.24/sbin/nginx -s reload
-ExecStop=/usr/local/nginx1.24/sbin/nginx -s quit
+ExecStart=/usr/local/nginx1.26/sbin/nginx -c /usr/local/nginx1.26/conf/nginx.conf
+ExecReload=/usr/local/nginx1.26/sbin/nginx -s reload
+ExecStop=/usr/local/nginx1.26/sbin/nginx -s quit
 PrivateTmp=true
 
 [Install]
@@ -193,11 +194,11 @@ systemctl disable nginx #关闭开机自启服务
 <font color="red"><b>`systemctl`与信号控制方式不能混用，原因未找到</b></font>
 
 ```bash
-/usr/local/nginx1.24/sbin/nginx -c /usr/local/nginx1.24/conf/nginx.conf #启动
-/usr/local/nginx1.24/sbin/nginx -s stop    #关闭
-/usr/local/nginx1.24/sbin/nginx -s quit    #关闭
-/usr/local/nginx1.24/sbin/nginx -s reload  #重新加载配置文件
-/usr/local/nginx1.24/sbin/nginx -t         #核验配置文件是否正确
+/usr/local/nginx1.26/sbin/nginx -c /usr/local/nginx1.26/conf/nginx.conf #启动
+/usr/local/nginx1.26/sbin/nginx -s stop    #关闭
+/usr/local/nginx1.26/sbin/nginx -s quit    #关闭
+/usr/local/nginx1.26/sbin/nginx -s reload  #重新加载配置文件
+/usr/local/nginx1.26/sbin/nginx -t         #核验配置文件是否正确
 ```
 
 `nginx -s quit` 是一个优雅的关闭方式，Nginx在退出前完成已经接受的请求处理。
@@ -216,7 +217,7 @@ vim /etc/rc.d/rc.local
 在文件末尾添加
 
 ```vim
-/usr/local/nginx1.24/sbin/nginx -c /usr/local/nginx1.24/conf/nginx.conf
+/usr/local/nginx1.26/sbin/nginx -c /usr/local/nginx1.26/conf/nginx.conf
 ```
 
 :::
@@ -240,7 +241,7 @@ rm -rf /usr/lib64/nginx /etc/nginx /usr/share/nginx
 删除日志文件
 
 ```bash
-rm -rf /data/logs/nginx1.24
+rm -rf /data/logs/nginx1.26
 ```
 
 ## 附录3.参考资料

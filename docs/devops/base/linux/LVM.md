@@ -80,3 +80,11 @@ echo "/dev/mapper/openeuler-data /data ext4 defaults 1 2" >> /etc/fstab
 ```
 
 > 将挂载信息写入 /etc/fstab，确保下次开机自动挂载。
+
+
+## LVM磁盘扩容
+### Step1：查看当前逻辑卷信息
+
+```bash
+lsblk -f
+```

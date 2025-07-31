@@ -94,7 +94,7 @@ rewrite ^/(t.php|phpinfo.php|info.php) /index.php last;
 
 ### 1.cors.conf
 
-**在 server 块的配置中引入配置文件**，示例：`include /usr/local/nginx1.24/conf/cors.conf;`
+**在 server 块的配置中引入配置文件**，示例：`include /usr/local/nginx1.26/conf/cors.conf;`
 
 > [!IMPORTANT]
 >
@@ -105,13 +105,22 @@ add_header Access-Control-Allow-Origin *;
 add_header Access-Control-Allow-Methods GET,POST,OPTIONS;
 add_header Access-Control-Allow-Headers 'Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Access-Control-Allow-Origin,X-Authorization,X-Timestamp,X-Nonce,X-Terminal,X-Signature';
 add_header 'Access-Control-Allow-Credentials' 'true';
+
+# 修复CORS 允许任意来源携带认证信息漏洞
+#add_header Access-Control-Allow-Origin * always;
+add_header 'Access-Control-Allow-Origin' $http_origin;
+add_header Access-Control-Allow-Methods GET,POST,OPTIONS,PUT,DELETE,PATCH always;
+add_header Access-Control-Allow-Headers 'DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,X-Auth-Token,authtoken,x-authtoken,Cache-Control,Content-Type,access-control-allow-origin,Authorization,X-Authorization,dept_id,x-terminal,content-encoding,ignorecanceltoken,x-signature,x-timestamp,x-nonce,x-token,x-appid,x-debug-token' always;
+#add_header 'Access-Control-Allow-Credentials' 'true' always;
+add_header 'Access-Control-Allow-Credentials' 'true';
 ```
+
 
 Access-Control-Allow-Headers 标头字段用于预检请求的响应。其指明了实际请求中允许携带的标头字段。这个标头是服务器端对浏览器端 Access-Control-Request-Headers 标头的响应（实际操作中可参照具体的报错信息，将未允许的 header 添加到该字段中）。
 
 ### 2.cors_options.conf
 
-**在 location 块中引入配置文件**，如果 server 块中有多个 location，每个 location 块都需要配置。示例：`include /usr/local/nginx1.24/conf/cors_options.conf;`
+**在 location 块中引入配置文件**，如果 server 块中有多个 location，每个 location 块都需要配置。示例：`include /usr/local/nginx1.26/conf/cors_options.conf;`
 
 > [!WARNING]
 >
@@ -134,7 +143,7 @@ if ($request_method = 'OPTIONS') {
 
 ### 1..forbidden.conf
 
-将 Nginx 禁止访问的地址统一配置在 `/usr/local/nginx1.24/conf/forbidden.conf` 文件中，并在 `server` 块的配置中通过 `include` 指令引入。
+将 Nginx 禁止访问的地址统一配置在 `/usr/local/nginx1.26/conf/forbidden.conf` 文件中，并在 `server` 块的配置中通过 `include` 指令引入。
 
 ```vim
 # 访问示例 https://internal-domain.com/.htaccess
