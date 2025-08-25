@@ -1,6 +1,8 @@
 import { defineConfig } from "vitepress";
 import nav from "./nav.mts";
 import createSidebar from "./menu/index.mts";
+import { tabsMarkdownPlugin } from 'vitepress-plugin-tabs'
+
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -31,10 +33,12 @@ export default defineConfig({
     headers: {
       level: [1, 2, 3, 4, 5, 6],
     },
-
     toc: {
       level: [1, 2, 3, 4, 5, 6],
     },
+    config(md) {
+      md.use(tabsMarkdownPlugin)
+    }
   },
 
 
