@@ -66,7 +66,7 @@ yum -y install gcc gcc-c++ glibc make autoconf pcre-devel pam-devel zlib zlib-de
 
 2. 升级OpenSSL
 
-参照 <a href="/devops/baseops/server-os/initialization.html#升级-openssl">系统初始操作 · 升级OpenSSL</a>，将 OpenSSL 升级到1.1.*
+参照 <a href="/docs/devops/base/server-os/initialization#升级-openssl">系统初始操作 · 升级OpenSSL</a>，将 OpenSSL 升级到1.1.*
 
 ## 0x03.源码编译安装
 

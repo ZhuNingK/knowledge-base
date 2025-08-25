@@ -15,9 +15,17 @@ const devopsMenu = [
                 ]
             },
             {
-                text: 'openssh',
+                text: 'init-server-os',
                 collapsed: true,
                 items: [
+                    {
+                        text: '初始化操作系统',
+                        link: '/docs/devops/base/server-os/init-os.md',
+                    },
+                    {
+                        text: 'openSSL升级',
+                        link: '/docs/devops/base/server-os/upgrade-openssl.md',
+                    },
                     {
                         text: 'openSSH升级',
                         link: '/docs/devops/base/server-os/upgrade-openssh.md',
