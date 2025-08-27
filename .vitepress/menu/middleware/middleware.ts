@@ -59,6 +59,16 @@ const middlewareMenu = [
                 ]
             },
             {
+                text: 'RocketMQ',
+                collapsed: true,
+                items: [
+                    {
+                        text: 'Rocketmq 5.3.1 单节点安装部署',
+                        link: '/docs/middleware/rocketmq/rocketmq5.3.1-install.md',
+                    },
+                ]
+            },
+            {
                 text: 'Elasticsearch',
                 collapsed: true,
                 items: [
