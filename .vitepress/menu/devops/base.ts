@@ -153,6 +153,16 @@ const devopsMenu = [
                     },
 
                 ]
+            },
+            {
+                text: 'supervisor',
+                collapsed: true,
+                items: [
+                    {
+                        text: 'supervisor安装',
+                        link: '/docs/devops/base/supervisor/supervisor-install.md',
+                    }
+                ]
             }
         ],
     }
