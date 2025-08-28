@@ -29,6 +29,10 @@ const devopsMenu = [
                     {
                         text: 'openSSH升级',
                         link: '/docs/devops/base/server-os/upgrade-openssh.md',
+                    },
+                    {
+                        text: '系统配置优化',
+                        link: '/docs/devops/base/server-os/optimization.md',
                     }
                 ]
             },
