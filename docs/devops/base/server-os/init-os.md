@@ -191,5 +191,8 @@ set completeopt=preview,menu  "代码补全
 
 ## 七、设置最大打开文件数及进程数
 
+详见： <a href="/docs/devops/base/server-os/optimization.html#一、设置最大打开文件数及进程数" target="_blank">设置最大打开文件数及进程数</a>
 
 ## 八、内核及网络设置
+
+详见： <a href="/docs/devops/base/server-os/optimization.html#四、内核及网络设置" target="_blank">内核及网络设置</a>

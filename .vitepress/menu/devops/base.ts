@@ -29,6 +29,10 @@ const devopsMenu = [
                     {
                         text: 'openSSH升级',
                         link: '/docs/devops/base/server-os/upgrade-openssh.md',
+                    },
+                    {
+                        text: '系统配置优化',
+                        link: '/docs/devops/base/server-os/optimization.md',
                     }
                 ]
             },
@@ -148,6 +152,20 @@ const devopsMenu = [
                         link: '/docs/devops/base/ansiable/ansible-install.md',
                     },
 
+                ]
+            },
+            {
+                text: 'supervisor',
+                collapsed: true,
+                items: [
+                    {
+                        text: 'supervisor安装',
+                        link: '/docs/devops/base/supervisor/supervisor-install.md',
+                    },
+                    {
+                        text: 'supervisor配置',
+                        link: '/docs/devops/base/supervisor/supervisor-config.md',
+                    }
                 ]
             }
         ],
