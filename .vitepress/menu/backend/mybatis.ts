@@ -5,7 +5,7 @@ const MybatisMenu = [
       collapsed: false,
       items: [
         {
-          text: 'mybatis',
+          text: 'Mybatis',
           collapsed: false,
           items: [
 

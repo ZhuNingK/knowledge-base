@@ -6,12 +6,13 @@ import devopsMenu from "./devops/base"
 // 中间件
 import middlewareMenu from "./middleware/middleware"
 
-// java
-import springMenu from "./java/spring"
-import mybatisMenu from "./java/mybatis"
+// 后端
+import springMenu from "./backend/spring"
+import mybatisMenu from "./backend/mybatis"
+import redisMenu from "./backend/redis"
 
 // database
-import DatebaseMenu from "./database/database"
+import DatabaseMenu from "./database/database"
 
 
 const createSidebar = () => {
@@ -20,11 +21,12 @@ const createSidebar = () => {
     '/docs/devops/base/': devopsMenu,
     // middleware
     '/docs/middleware/': middlewareMenu,
-    // java
-    '/docs/java/spring/': springMenu,
-    '/docs/java/mybatis/': mybatisMenu,
+    // 后端
+    '/docs/backend/spring/': springMenu,
+    '/docs/backend/mybatis/': mybatisMenu,
+    '/docs/backend/redis/': redisMenu,
     // database
-    '/docs/database/': DatebaseMenu,
+    '/docs/database/': DatabaseMenu,
 
   }
 }
