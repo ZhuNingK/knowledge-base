@@ -54,5 +54,5 @@
 
 ### 2. 流程图
 
-![生命周期流程图](<../../../public/docs/java/springboot-life- cycle-image.png>)
+![生命周期流程图](/public/docs/backend/springboot/springboot-life-%20cycle-image.png)
 
