@@ -9,9 +9,13 @@ const devopsMenu = [
                 collapsed: true,
                 items: [
                     {
-                        text: 'linux磁盘挂载',
-                        link: '/docs/devops/base/linux/LVM.md',
+                        text: 'lvm磁盘挂载',
+                        link: '/docs/devops/base/linux/lvm.md',
                     },
+                    {
+                        text:'lvm磁盘扩容',
+                        link: '/docs/devops/base/linux/lvm-extend.md',
+                    }
                 ]
             },
             {
