@@ -9,6 +9,7 @@
 ::: tip
 - 服务器提前安装JDK8及以上版本，建议JDK8，JDK11，JDK17。
 :::
+
 ```bash
     cd /usr/local/src
     wget https://archive.apache.org/dist/rocketmq/5.3.1/rocketmq-all-5.3.1-bin-release.zip
