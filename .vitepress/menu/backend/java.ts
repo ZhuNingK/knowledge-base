@@ -51,6 +51,22 @@ const JavaMenu = [
                 ]
             },
         ],
+    },
+    {
+        text: 'Mybatis',
+        collapsed: false,
+        items: [
+            {
+                text: 'Mybatis',
+                collapsed: false,
+                items: [
+                    {
+                        text: "Mybatis配置",
+                        link: "/docs/backend/java/framework/mybatis/mybatis.md",
+                    }
+                ]
+            },
+        ],
     }
 ]
 
