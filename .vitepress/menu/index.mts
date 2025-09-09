@@ -7,9 +7,7 @@ import devopsMenu from "./devops/base"
 import middlewareMenu from "./middleware/middleware"
 
 // 后端
-import springMenu from "./backend/spring"
-import mybatisMenu from "./backend/mybatis"
-import redisMenu from "./backend/redis"
+import JavaMenu from "./backend/java"
 
 // database
 import DatabaseMenu from "./database/database"
@@ -22,9 +20,8 @@ const createSidebar = () => {
     // middleware
     '/docs/middleware/': middlewareMenu,
     // 后端
-    '/docs/backend/spring/': springMenu,
-    '/docs/backend/mybatis/': mybatisMenu,
-    '/docs/backend/redis/': redisMenu,
+    '/docs/backend/java/': JavaMenu,
+
     // database
     '/docs/database/': DatabaseMenu,
 

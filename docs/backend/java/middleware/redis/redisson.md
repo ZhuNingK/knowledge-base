@@ -168,7 +168,7 @@ public void test() throws Exception {
 > 默认情况下，看门狗的续期时间是30s，也可以通过修改Config.lockWatchdogTimeout来另行指定。另外Redisson
 > 还提供了可以指定leaseTime参数的加锁方法来指定加锁的时间。超过这个时间后锁便自动解开了，不会延长锁的有效期。
 
-- atchDog 只有在未显示指定加锁时间（leaseTime）时才会生效。（这点很重要）
+- watchDog 只有在未显示指定加锁时间（leaseTime）时才会生效。（这点很重要）
 - lockWatchdogTimeout设定的时间不要太小 ，比如我之前设置的是 100毫秒，由于网络直接导致加锁完后，watchdog去延期时，这个key在redis中已经被删除了。
   在调用lock方法时，会最终调用到tryAcquireAsync。调用链为：lock()->tryAcquire->tryAcquireAsync,详细解释如下：
 
