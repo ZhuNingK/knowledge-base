@@ -21,7 +21,7 @@
 )}
 )
 public @interface SpringBootApplication {
-    ...//忽略具体业务参数信息
+    // 忽略具体业务参数信息
 }
 ```
 
@@ -83,7 +83,9 @@ public @interface Configuration {
  @Inherited
  @AutoConfigurationPackage
  @Import(AutoConfigurationImportSelector.class)//自动配置的引入选择器实现
- public @interface EnableAutoConfiguration {...}
+ public @interface EnableAutoConfiguration {
+    // 忽略具体业务参数信息
+}
 ```
 
 除了四个元注解，这个注解被两个注解所标注：
@@ -100,7 +102,9 @@ public @interface Configuration {
  @Documented
  @Inherited
  @Import(AutoConfigurationPackages.Registrar.class)
- public @interface AutoConfigurationPackage {...}
+ public @interface AutoConfigurationPackage {
+    // 忽略具体业务参数信息
+}
 ```
 
 `@AutoConfigurationPackage`中使用注解`@Import`导入了AutoConfigurationPackages.Registrar.class到容器中，分析这个类，进入到这个内部类**Regisrar：**
@@ -182,6 +186,9 @@ public String[] selectImports(AnnotationMetadata annotationMetadata) {//selectIm
     basePackages = "com.example.project",
     excludeFilters = @ComponentScan.Filter(type = FilterType.ANNOTATION, classes = Deprecated.class)
 )
+public class AppConfig {
+    // 配置类内容
+}
 ```
 
 > 上述代码会扫描 `com.example.project` 包及其子包，但会排除标注了 `@Deprecated` 注解的类。
