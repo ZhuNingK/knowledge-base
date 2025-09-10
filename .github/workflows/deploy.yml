@@ -15,9 +15,21 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: echo SECRETS
-        run: echo ${{ secrets }}
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
 
+      - name: Build VitePress site
+        run: |
+          npm install
+          npm run docs:build
+
+      - name: ECHO DEPLOY PATH
+        run: echo ${{ secrets.DEPLOY_PATH }}
+
+      - name: ECHO SECRETS SSH KEY
+        run: echo "DEPLOY_PATH" && echo ${{ secrets.SERVER_SSH_KEY }}
 
       - name: Install SSH Key
         uses: shimataro/ssh-key-action@v2
@@ -29,15 +41,6 @@ jobs:
       - name: Adding Known Hosts
         run: ssh-keyscan -p ${{ secrets.SERVER_PORT }} -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '18'
-
-      - name: Build VitePress site
-        run: |
-          npm install
-          npm run docs:build
 
       - name: Clear target directory
         run: ssh -p ${{ secrets.SERVER_PORT }} ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_HOST }} "rm -rf ${{ secrets.DEPLOY_PATH }}/*"
