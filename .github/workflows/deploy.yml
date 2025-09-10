@@ -31,8 +31,6 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           known_hosts: unnecessary
           if_key_exists: replace
-          # 添加 decoding 参数告诉 action 这是 base64 编码的
-          decoding: base64
 
       - name: Adding Known Hosts
         run: ssh-keyscan -p ${{ secrets.SERVER_PORT }} -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
