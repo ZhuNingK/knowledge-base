@@ -10,15 +10,6 @@ on:
       - 'public/**'
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Set test env
-        run: echo "TEST_VAR=hello" >> $GITHUB_ENV
-
-      - name: Echo test env
-        run: echo "TEST_VAR=$TEST_VAR"
-        
   deploy:
     runs-on: ubuntu-latest
     steps:
