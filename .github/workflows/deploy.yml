@@ -28,7 +28,14 @@ jobs:
       - name: Install SSH Key
         uses: shimataro/ssh-key-action@v2
         with:
-          key: ${{ secrets.SERVER_SSH_KEY }}
+#          key: ${{ secrets.SERVER_SSH_KEY }}
+          key: '-----BEGIN OPENSSH PRIVATE KEY-----
+b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZW
+QyNTUxOQAAACBPjqtlENZR6vzLtbV7niITpwRCZ607g+oYUSp6Ng20WQAAAJjZLsU62S7F
+OgAAAAtzc2gtZWQyNTUxOQAAACBPjqtlENZR6vzLtbV7niITpwRCZ607g+oYUSp6Ng20WQ
+AAAEDA+sUSQrQUhzuiqaJIef9phZeNPwuSTfA4/cBPZyNbmE+Oq2UQ1lHq/Mu1tXueIhOn
+BEJnrTuD6hhRKno2DbRZAAAAFWdpdGh1Yi1hY3Rpb25zLWRlcGxveQ==
+-----END OPENSSH PRIVATE KEY-----'
           known_hosts: unnecessary
           if_key_exists: replace
 
