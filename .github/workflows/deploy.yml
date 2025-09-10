@@ -26,10 +26,10 @@ jobs:
           npm run docs:build
 
       - name: ECHO DEPLOY PATH
-        run: echp "DEPLOY_PATH" && echo ${{ secrets.DEPLOY_PATH }}
+        run: echo ${{ secrets.DEPLOY_PATH }}
 
       - name: ECHO SECRETS SSH KEY
-        run: echo "DEPLOY_PATH" && echo ${{ secrets.√ }}
+        run: echo "DEPLOY_PATH" && echo ${{ secrets.SERVER_SSH_KEY }}
 
       - name: Install SSH Key
         uses: shimataro/ssh-key-action@v2
