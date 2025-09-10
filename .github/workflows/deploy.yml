@@ -25,7 +25,10 @@ jobs:
           npm install
           npm run docs:build
 
-      - name: echo SECRETS
+      - name: ECHO DEPLOY PATH
+        run: echo ${{ secrets.DEPLOY_PATH }}
+
+      - name: ECHO SECRETS SSH KEY
         run: echo ${{ secrets.SERVER_SSH_KEY }}
 
       - name: Install SSH Key
