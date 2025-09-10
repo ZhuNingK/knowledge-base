@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: echo SECRETS
-        run: echo ${{ secrets.SERVER_SSH_KEY }}
+        run: echo ${{ secrets }}
 
 
       - name: Install SSH Key
