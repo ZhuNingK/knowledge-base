@@ -13,12 +13,13 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
           node-version: '18'
+          cache: 'npm'
 
       - name: Build VitePress site
         run: |
@@ -28,16 +29,15 @@ jobs:
       - name: Install SSH Key
         uses: shimataro/ssh-key-action@v2
         with:
-          key: ${{  SECRETS.SERVER_SSH_KEY }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
           known_hosts: unnecessary
           if_key_exists: replace
 
       - name: Adding Known Hosts
-        run: ssh-keyscan -p ${{  SECRETS.SERVER_PORT }} -H ${{  SECRETS.SERVER_HOST }} >> ~/.ssh/known_hosts
-
+        run: ssh-keyscan -p ${{ secrets.SERVER_PORT }} -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
 
       - name: Clear target directory
-        run: ssh -p ${{  SECRETS.SERVER_PORT }} ${{  SECRETS.SERVER_USERNAME }}@${{  SECRETS.SERVER_HOST }} "rm -rf ${{  SECRETS.DEPLOY_PATH }}/*"
+        run: ssh -p ${{ secrets.SERVER_PORT }} ${{   secrets.SERVER_USERNAME }}@${{ secrets.SERVER_HOST }} "rm -rf ${{ secrets.DEPLOY_PATH }}/*"
 
       - name: Deploy with rsync
-        run: rsync -avz -e "ssh -p ${{  SECRETS.SERVER_PORT }}" ./.vitepress/dist/ ${{  SECRETS.SERVER_USERNAME }}@${{  SECRETS.SERVER_HOST }}:${{  SECRETS.DEPLOY_PATH }}
+        run: rsync -avz -e "ssh -p ${{ secrets.SERVER_PORT }}" ./.vitepress/dist/ ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_HOST }}:${{ secrets.DEPLOY_PATH }}
