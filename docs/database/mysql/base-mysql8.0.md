@@ -63,34 +63,7 @@ UPDATE user SET email = 'zhangsan@new.com' WHERE name = '张三';
 # 删除数据
 DELETE FROM user WHERE name = '张三';
 ```
-# MYSQL基础SQL
-### 登录数据
-```bash
-# 登录数据库
-mysql -u root -p root
-```
-### 创建、授权和删除用户
-```sql
-# 创建用户和授权
-# 创建用户（本地登录）
-CREATE USER 'testuser'@'localhost' IDENTIFIED BY 'password123';
 
-# 创建用户（远程登录）
-CREATE USER 'testuser'@'%' IDENTIFIED BY 'password123';
-
-# 授权某个数据库的所有权限给用户
-GRANT ALL PRIVILEGES ON demo.* TO 'testuser'@'%';
-
-# 刷新权限（每次授权后建议执行）
-FLUSH PRIVILEGES;
-
-# 查看所有用户
-SELECT User, Host FROM mysql.user;
-
-# 删除用户
-DROP USER 'testuser'@'%';
-```
-### 基础SQL操作
 ```sql
 # 登录成功后常用基础操作命令
 # 查看当前用户
