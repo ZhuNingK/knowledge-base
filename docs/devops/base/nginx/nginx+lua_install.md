@@ -9,7 +9,7 @@
 > [!TIP]
 >
 > - 源码包统一放置于 /usr/local/src 目录
-> - 软件安装到 /usr/local 中，并以软件名及主次版本号命名，如 nginx1.24
+> - 软件安装到 /usr/local 中，并以软件名及主次版本号命名，如 nginx1.28
 
 ------
 
@@ -68,11 +68,11 @@ tar -zxvf lua-nginx-module-0.10.24.tar.gz
 
 ```bash
 cd /usr/local/src
-wget https://github.com/openresty/lua-resty-core/archive/refs/tags/v0.1.26.tar.gz -O lua-resty-core-0.1.26.tar.gz
-tar -zxvf lua-resty-core-0.1.26.tar.gz
+wget https://github.com/openresty/lua-resty-core/archive/refs/tags/v0.1.28.tar.gz -O lua-resty-core-0.1.28.tar.gz
+tar -zxvf lua-resty-core-0.1.28.tar.gz
 
 # 编译安装
-cd /usr/local/src/lua-resty-core-0.1.26
+cd /usr/local/src/lua-resty-core-0.1.28
 make && make install PREFIX=/usr/local/lua-resty-core-0.1
 ```
 
@@ -101,7 +101,7 @@ make && make install PREFIX=/usr/local/lua-resty-lrucache-0.13
 创建日志目录
 
 ```bash
-mkdir -pv /data/log/nginx1.24
+mkdir -pv /data/log/nginx1.28
 ```
 
 配置文件内容请参照[Nginx基础配置](configuration.md)
@@ -110,7 +110,117 @@ mkdir -pv /data/log/nginx1.24
 
 ------
 
-## 四、使用Systemd管理进程TIP
+## 三、编译安装Nginx
+
+### 0x01.创建Nginx用户
+
+```bash
+groupadd nginx
+useradd -g nginx nginx -s /sbin/nologin
+```
+
+### 0x02.下载源代码包并解压缩
+
+:::warning
+软件包下载比较慢的情况下，可下载团队软件库中对应的安装包。命令示例：`wget <Software Download Link> -O <Software Package Name>`。
+:::
+
+```bash
+cd /usr/local/src
+wget http://nginx.org/download/nginx-1.24.0.tar.gz
+tar -zxvf nginx-1.24.0.tar.gz
+```
+
+### 0x03.编译并安装
+
+```bash
+cd /usr/local/src/nginx-1.24.0
+```
+
+:::warning
+- `./configure` 中的 --with-http_***_module 模块默认是不会安装的，[需要显式配置](http://nginx.org/en/docs/configure.html)。
+  :::
+
+::: tabs
+
+=== 自定义openssl路径
+
+```bash
+./configure --prefix=/usr/local/nginx1.24 \
+    --with-http_stub_status_module \
+    --with-http_gzip_static_module \
+    --with-http_realip_module \
+    --with-http_sub_module \
+    --with-http_ssl_module \
+    --with-openssl=/usr/local/src/openssl-1.1.1w \
+    --add-module=/usr/local/src/ngx_devel_kit-0.3.4 \
+    --add-module=/usr/local/src/lua-nginx-module-0.10.28
+```
+---
+
+=== 系统默认openssl路径
+
+```bash
+./configure --prefix=/usr/local/nginx1.24 \
+    --with-http_stub_status_module \
+    --with-http_gzip_static_module \
+    --with-http_realip_module \
+    --with-http_sub_module \
+    --with-http_ssl_module \
+    --add-module=/usr/local/src/ngx_devel_kit-0.3.4 \
+    --add-module=/usr/local/src/lua-nginx-module-0.10.28
+```
+:::
+
+---
+
+```bash
+make && make install
+```
+
+### 0x05.添加环境变量
+
+```bash
+echo 'PATH=$PATH:/usr/local/nginx1.24/sbin
+export PATH' >> /etc/profile
+```
+
+刷新环境变量
+```bash
+source /etc/profile
+```
+
+### 0x06.修改Nginx配置文件
+
+创建日志目录（日志目录所属用户需同启动 nginx 服务的用户一致）
+```bash
+mkdir -pv /var/log/nginx1.24
+```
+
+备份
+```bash
+\cp /usr/local/nginx1.24/conf/nginx.conf /usr/local/nginx1.24/conf/nginx.conf.bak
+```
+
+清空
+```bash
+echo > /usr/local/nginx1.24/conf/nginx.conf
+```
+
+编辑
+```bash
+vim /usr/local/nginx1.24/conf/nginx.conf
+```
+
+配置文件内容请参照<a href="/devops/baseops/nginx/configuration.html" target="_blank">Nginx基础配置</a>
+
+在`http`块中新增 Lua 先关配置
+```vim
+lua_package_path "/usr/local/lua-resty-core-0.1/lib/lua/?.lua;/usr/local/lua-resty-lrucache-0.15/lib/lua/?.lua;;";
+```
+
+
+## 四、使用Systemd管理进程
 
 > [!TIP]
 >
@@ -121,7 +231,7 @@ mkdir -pv /data/log/nginx1.24
 
 > [!TIP]
 >
-> - 为了便于后期维护，约定在 nginx.service 中明确加载的配置文件路径（如：-c /usr/local/nginx1.24/conf/nginx.conf）。
+> - 为了便于后期维护，约定在 nginx.service 中明确加载的配置文件路径（如：-c /usr/local/nginx1.28/conf/nginx.conf）。
 > - 配置文件中不支持在每行命令的后面添加注释
 
 在 /etc/systemd/system 目录下面新建一个 service 文件
@@ -139,9 +249,9 @@ After=network.target
 
 [Service]
 Type=forking
-ExecStart=/usr/local/nginx1.24/sbin/nginx -c /usr/local/nginx1.24/conf/nginx.conf
-ExecReload=/usr/local/nginx1.24/sbin/nginx -s reload
-ExecStop=/usr/local/nginx1.24/sbin/nginx -s quit
+ExecStart=/usr/local/nginx1.28/sbin/nginx -c /usr/local/nginx1.28/conf/nginx.conf
+ExecReload=/usr/local/nginx1.28/sbin/nginx -s reload
+ExecStop=/usr/local/nginx1.28/sbin/nginx -s quit
 PrivateTmp=true
 
 [Install]

@@ -6,7 +6,11 @@ const createNav = () => {
         },
         {
             text: "Devops",
-            link: "/docs/devops/base/base.md"
+            items: [
+                {text: "基础运维", link: "/docs/devops/base/base.md"},
+                {text: "容器", link: "/docs/devops/container/base.md"},
+                {text: "CI/CD", link: "/docs/devops/cicd/jenkins-install.md"},
+            ],
         },
         {
             text: "中间件",

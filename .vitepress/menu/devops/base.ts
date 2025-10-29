@@ -13,7 +13,7 @@ const devopsMenu = [
                         link: '/docs/devops/base/linux/lvm.md',
                     },
                     {
-                        text:'lvm磁盘扩容',
+                        text: 'lvm磁盘扩容',
                         link: '/docs/devops/base/linux/lvm-extend.md',
                     }
                 ]
@@ -77,54 +77,12 @@ const devopsMenu = [
                 ]
             },
             {
-                text: 'docker',
-                collapsed: true,
-                items: [
-                    {
-                        text: 'docker安装',
-                        link: '/docs/devops/base/docker/docker-install.md',
-                    },
-                    {
-                        text: 'docker-compose安装',
-                        link: '/docs/devops/base/docker/docker-compose-install.md',
-                    }
-                ]
-            },
-            {
                 text: 'harbor',
                 collapsed: true,
                 items: [
                     {
                         text: 'harbor安装',
                         link: '/docs/devops/base/harbor/install.md',
-                    }
-                ]
-            },
-            {
-                text: 'k8s',
-                collapsed: true,
-                items: [
-                    {
-                        text: 'kubeSphere多节点安装',
-                        link: '/docs/devops/base/k8s/install.md',
-                    },
-                    {
-                        text: 'kuberctl命令',
-                        link: '/docs/devops/base/k8s/kubectl.md',
-                    },
-                    {
-                        text: 'jenkins+K8s流水线',
-                        collapsed: true,
-                        items: [
-                            {
-                                text: 'springboot项目-deployment',
-                                link: '/docs/devops/base/k8s/jenkins/springboot/deployment.md',
-                            },
-                            {
-                                text: 'springboot项目-service',
-                                link: '/docs/devops/base/k8s/jenkins/springboot/service.md',
-                            }
-                        ]
                     }
                 ]
             },

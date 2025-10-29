@@ -15,7 +15,7 @@
 >
 >192.168.1.11（拉取harbor镜像的机器）
 
-### 二、[安装docker/docker-compose](../docker/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C.md)
+### 二、[安装docker/docker-compose](../../container/docker/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C.md)
 
 ### 三、安装Harbor
 

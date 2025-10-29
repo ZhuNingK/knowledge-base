@@ -2,6 +2,8 @@
 
 // 运维
 import devopsMenu from "./devops/base"
+import CICDMenu  from "./devops/cicd";
+import ContainerMenu from "./devops/container"
 
 // 中间件
 import middlewareMenu from "./middleware/middleware"
@@ -17,6 +19,8 @@ const createSidebar = () => {
   return {
     // devops
     '/docs/devops/base/': devopsMenu,
+    '/docs/devops/container/': ContainerMenu,
+    '/docs/devops/cicd/': CICDMenu,
     // middleware
     '/docs/middleware/': middlewareMenu,
     // 后端
