@@ -129,6 +129,40 @@ const devopsMenu = [
                         link: '/docs/devops/base/supervisor/supervisor-config.md',
                     }
                 ]
+            },
+            {
+                text: 'php',
+                collapsed: true,
+                items: [
+                    {
+                        text: 'php7介绍',
+                        link: '/docs/devops/base/php7/introduction.md',
+                    },
+                    {
+                        text: 'php7.3安装',
+                        link: '/docs/devops/base/php7/install-php73.md',
+                    },
+                    {
+                        text: 'php7.4安装',
+                        link: '/docs/devops/base/php7/install-php7-extension.md',
+                    },
+                    {
+                        text: 'php7扩展安装',
+                        link: '/docs/devops/base/php7/php7-extensions.md',
+                    },
+                    {
+                        text: 'Composer安装',
+                        link: '/docs/devops/base/php7/composer.md',
+                    },
+                    {
+                        text: 'php-ini配置',
+                        link: '/docs/devops/base/php7/php-ini.md',
+                    },
+                    {
+                        text: 'php-fpm配置',
+                        link: '/docs/devops/base/php7/php-fpm.md',
+                    }
+                ]
             }
         ],
     }
