@@ -148,7 +148,7 @@ const devopsMenu = [
                     },
                     {
                         text: 'php7扩展安装',
-                        link: '/docs/devops/base/php7/php7-extensions.md',
+                        link: '/docs/devops/base/php7/install-php7-extension.md',
                     },
                     {
                         text: 'Composer安装',
