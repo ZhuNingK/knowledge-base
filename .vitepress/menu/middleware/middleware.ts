@@ -81,6 +81,10 @@ const middlewareMenu = [
                         link: '/docs/middleware/elastic/install-es7.17-cluster.md',
                     },
                     {
+                        text: 'Elasticsearch7.17 容器化部署',
+                        link: '/docs/middleware/elastic/install-es7.17-docker.md',
+                    },
+                    {
                         text: '单节点 Elasticsearch8.14 部署',
                         link: '/docs/middleware/elastic/install-es8.14.md'
                     },
